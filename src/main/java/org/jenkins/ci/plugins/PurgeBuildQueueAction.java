@@ -51,7 +51,7 @@ public final class PurgeBuildQueueAction implements RootAction {
 
   public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException,
       IOException {
-    final Queue queue = Jenkins.getInstance().getQueue();
+    final Queue queue = Jenkins.get().getQueue();
 
     if (queue != null) {
       LOG.info("Purge Build Queue requested, "
@@ -75,14 +75,14 @@ public final class PurgeBuildQueueAction implements RootAction {
   }
 
   public String getIconFileName() {
-    return "/images/32x32/gear2.png";
+    return "gear.png";
   }
 
   public String getUrlName() {
     return "/purge-build-queue";
   }
 
-  protected static String getItemsVerbage(final int length) {
+  private static String getItemsVerbage(final int length) {
     if (length == 1) {
       return "1 item";
     }
