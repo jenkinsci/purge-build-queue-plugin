@@ -1,18 +1,18 @@
 /*
  * The MIT License
- * 
+ *
  * Copyright (c) 2011, Jesse Farinacci
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package org.jenkins.ci.plugins;
+package io.jenkins.plugins;
 
 import hudson.Extension;
 import hudson.model.RootAction;
@@ -45,48 +45,51 @@ import org.kohsuke.stapler.StaplerResponse;
 @Extension
 public final class PurgeBuildQueueAction implements RootAction {
 
-  private static final Logger                               LOG = Logger
-                                                                    .getLogger(PurgeBuildQueueAction.class
-                                                                    .getName());
+    private static final Logger LOG = Logger
+            .getLogger(PurgeBuildQueueAction.class
+                    .getName());
 
-  public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException,
-      IOException {
-    final Queue queue = Jenkins.get().getQueue();
-
-    if (queue != null) {
-      LOG.info("Purge Build Queue requested, "
-        + getItemsVerbage(queue.getItems().length)
-        + " in the queue.");
-
-      if (LOG.isLoggable(Level.FINE)) {
-        for (final Queue.Item item : queue.getItems()) {
-          LOG.fine("Purging " + item);
+    private static String getItemsVerbage(final int length) {
+        if (length == 1) {
+            return "1 item";
         }
-      }
 
-      queue.clear();
+        return length + " items";
     }
 
-    response.forwardToPreviousPage(request);
-  }
+    public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException,
+            IOException {
+        final Queue queue = Jenkins.get().getQueue();
 
-  public String getDisplayName() {
-    return Messages.RootActionLabel();
-  }
+        if (queue != null) {
+            LOG.info("Purge Build Queue requested, "
+                    + getItemsVerbage(queue.getItems().length)
+                    + " in the queue.");
 
-  public String getIconFileName() {
-    return "gear.png";
-  }
+            if (LOG.isLoggable(Level.FINE)) {
+                for (final Queue.Item item : queue.getItems()) {
+                    LOG.fine("Purging " + item);
+                }
+            }
 
-  public String getUrlName() {
-    return "/purge-build-queue";
-  }
+            queue.clear();
+        }
 
-  private static String getItemsVerbage(final int length) {
-    if (length == 1) {
-      return "1 item";
+        response.forwardToPreviousPage(request);
     }
 
-    return Integer.toString(length) + " items";
-  }
+    @Override
+    public String getDisplayName() {
+        return Messages.RootActionLabel();
+    }
+
+    @Override
+    public String getIconFileName() {
+        return "gear.svg";
+    }
+
+    @Override
+    public String getUrlName() {
+        return "/purge-build-queue";
+    }
 }
