@@ -80,7 +80,7 @@ public final class PurgeBuildQueueAction implements RootAction {
 
     @Override
     public String getDisplayName() {
-        return Messages.RootActionLabel();
+        return Messages.rootActionLabel();
     }
 
     @Override

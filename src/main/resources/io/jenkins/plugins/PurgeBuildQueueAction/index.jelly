@@ -25,7 +25,12 @@
 <?jelly escape-by-default='false'?>
 <j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:f="/lib/form">
   <j:getStatic var="permission" className="jenkins.model.Jenkins" field="ADMINISTER"/>
-  <l:layout norefresh="true" permission="${permission}" title="${%Purge.Build.Queue.Plugin.Title}">
+  <l:layout permission="${permission}" title="${%Purge.Build.Queue.Plugin.Title}">
+    <l:side-panel>
+      <l:tasks>
+        <l:task icon="icon-up icon-md" href="${rootURL}/" title="${%Back to Dashboard}" />
+      </l:tasks>
+    </l:side-panel>
     <l:main-panel>
       <h1>${%Purge.Build.Queue.Plugin.Title}</h1>
       <h2>${%Purge.Build.Queue.Plugin.Description}</h2>
