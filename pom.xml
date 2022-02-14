@@ -30,17 +30,17 @@ THE SOFTWARE.
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.33</version>
+    <version>4.34</version>
     <relativePath />
   </parent>
 
   <artifactId>purge-build-queue-plugin</artifactId>
   <packaging>hpi</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>${revision}${changelist}</version>
 
   <name>Purge Build Queue Plugin</name>
   <description>Provides an easy mechanism to purge the build queue.</description>
-  <url>http://wiki.jenkins-ci.org/display/JENKINS/Purge+Build+Queue+Plugin</url>
+  <url>https://github.com/jenkinsci/purge-build-queue-plugin/</url>
 
   <licenses>
     <license>
@@ -52,9 +52,9 @@ THE SOFTWARE.
 
   <developers>
     <developer>
-      <id>jieryn</id>
-      <name>Jesse Farinacci</name>
-      <email>jieryn@gmail.com</email>
+      <id>NotMyFault</id>
+      <name>Alex</name>
+      <email>contact@notmyfault.dev</email>
     </developer>
   </developers>
 
@@ -62,9 +62,19 @@ THE SOFTWARE.
     <connection>scm:git:git://github.com/jenkinsci/purge-build-queue-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/purge-build-queue-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/purge-build-queue-plugin</url>
+    <tag>${scmTag}</tag>
   </scm>
 
-  <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.jenkins.io/issues/?jql=project+%3D+JENKINS+AND+component+%3D+purge-build-queue-plugin</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>https://ci.jenkins.io/job/Plugins/job/purge-build-queue-plugin/</url>
+  </ciManagement>
+
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
@@ -92,9 +102,9 @@ THE SOFTWARE.
   </dependencyManagement>
 
   <properties>
-    <revision>1.1</revision>
+    <revision>2.0.0</revision>
     <changelist>-SNAPSHOT</changelist>
-    <jenkins.version>2.289.1</jenkins.version>
+    <jenkins.version>2.319.3</jenkins.version>
     <java.level>8</java.level>
   </properties>
 
