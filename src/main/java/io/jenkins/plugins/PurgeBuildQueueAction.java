@@ -37,6 +37,7 @@ import javax.servlet.ServletException;
 
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.interceptor.RequirePOST;
 
 /**
  * @author <a href="mailto:jieryn@gmail.com">Jesse Farinacci</a>
@@ -57,6 +58,7 @@ public final class PurgeBuildQueueAction implements RootAction {
         return length + " items";
     }
 
+    @RequirePOST
     public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException,
             IOException {
         final Queue queue = Jenkins.get().getQueue();
