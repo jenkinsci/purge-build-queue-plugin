@@ -15,7 +15,7 @@ jobs:
         uses: jenkins-infra/verify-ci-status-action@v1.2.0
         id: verify-ci-status
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOYMENT_PAT }}
           output_result: true
 
       - name: Release Drafter
@@ -26,14 +26,14 @@ jobs:
           tag: next
           version: next
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOYMENT_PAT }}
 
       - name: Check interesting categories
         uses: jenkins-infra/interesting-category-action@v1.0.0
         id: interesting-categories
         if: steps.verify-ci-status.outputs.result == 'success'
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOYMENT_PAT }}
 
   release:
     runs-on: ubuntu-latest
@@ -52,6 +52,6 @@ jobs:
       - name: Release
         uses: jenkins-infra/jenkins-maven-cd-action@v1.2.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOYMENT_PAT }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
