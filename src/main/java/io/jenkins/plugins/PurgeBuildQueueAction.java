@@ -87,7 +87,7 @@ public final class PurgeBuildQueueAction implements RootAction {
 
     @Override
     public String getIconFileName() {
-        return "gear.svg";
+        return Jenkins.get().hasPermission(Jenkins.ADMINISTER) ? "gear.svg" : null;
     }
 
     @Override
