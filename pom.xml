@@ -53,7 +53,7 @@ THE SOFTWARE.
   <developers>
     <developer>
       <id>NotMyFault</id>
-      <name>Alex</name>
+      <name>Alexander Brandes</name>
       <email>contact@notmyfault.dev</email>
     </developer>
   </developers>
@@ -94,7 +94,7 @@ THE SOFTWARE.
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
         <artifactId>bom-2.319.x</artifactId>
-        <version>1210.vcd41f6657f03</version>
+        <version>1246.va_b_50630c1d19</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
