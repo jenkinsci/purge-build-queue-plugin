@@ -46,21 +46,17 @@ import org.kohsuke.stapler.interceptor.RequirePOST;
 @Extension
 public final class PurgeBuildQueueAction implements RootAction {
 
-    private static final Logger LOG = Logger
-            .getLogger(PurgeBuildQueueAction.class
-                    .getName());
+    private static final Logger LOG = Logger.getLogger(PurgeBuildQueueAction.class.getName());
 
     private static String getItemsVerbage(final int length) {
         if (length == 1) {
             return "1 item";
         }
-
         return length + " items";
     }
 
     @RequirePOST
-    public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException,
-            IOException {
+    public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException, IOException {
         final Queue queue = Jenkins.get().getQueue();
 
         if (queue != null) {
@@ -76,7 +72,6 @@ public final class PurgeBuildQueueAction implements RootAction {
 
             queue.clear();
         }
-
         response.forwardToPreviousPage(request);
     }
 
@@ -87,11 +82,11 @@ public final class PurgeBuildQueueAction implements RootAction {
 
     @Override
     public String getIconFileName() {
-        return Jenkins.get().hasPermission(Jenkins.ADMINISTER) ? "gear.svg" : null;
+        return null;
     }
 
     @Override
     public String getUrlName() {
-        return "/purge-build-queue";
+        return "purge-build-queue";
     }
 }
