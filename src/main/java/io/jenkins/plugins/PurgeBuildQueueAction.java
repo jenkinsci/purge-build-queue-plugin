@@ -57,6 +57,7 @@ public final class PurgeBuildQueueAction implements RootAction {
 
     @RequirePOST
     public void doPurge(final StaplerRequest request, final StaplerResponse response) throws ServletException, IOException {
+        Jenkins.get().checkPermission(Jenkins.ADMINISTER);
         final Queue queue = Jenkins.get().getQueue();
 
         if (queue != null) {
