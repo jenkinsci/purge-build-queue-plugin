@@ -9,11 +9,7 @@ updates:
     target-branch: master
     labels:
       - dependencies
-    commit-message:
-      prefix: "build: "
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
-    commit-message:
-      prefix: "build: "
