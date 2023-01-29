@@ -3,13 +3,9 @@ updates:
   - package-ecosystem: maven
     directory: "/"
     schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 10
+      interval: monthly
     target-branch: master
-    labels:
-      - dependencies
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: monthly
