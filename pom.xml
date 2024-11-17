@@ -30,7 +30,7 @@ THE SOFTWARE.
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.75</version>
+    <version>4.88</version>
     <relativePath />
   </parent>
 
@@ -93,8 +93,8 @@ THE SOFTWARE.
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.361.x</artifactId>
-        <version>2102.v854b_fec19c92</version>
+        <artifactId>bom-${jenkins.baseline}.x</artifactId>
+        <version>3696.vb_b_4e2d1a_0542</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -110,7 +110,8 @@ THE SOFTWARE.
 
   <properties>
     <changelist>999999-SNAPSHOT</changelist>
-    <jenkins.version>2.361.4</jenkins.version>
+    <jenkins.baseline>2.452</jenkins.baseline>
+    <jenkins.version>${jenkins.baseline}.4</jenkins.version>
   </properties>
 
 </project>
