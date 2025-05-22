@@ -25,11 +25,14 @@
 package io.jenkins.plugins;
 
 import hudson.Extension;
-import hudson.model.RootAction;
+import hudson.model.Action;
 import hudson.model.Queue;
+import hudson.model.TransientViewActionFactory;
+import hudson.model.View;
 import jenkins.model.Jenkins;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +47,7 @@ import org.kohsuke.stapler.interceptor.RequirePOST;
  * @since 1.0
  */
 @Extension
-public final class PurgeBuildQueueAction implements RootAction {
+public final class PurgeBuildQueueAction implements Action {
 
     private static final Logger LOG = Logger.getLogger(PurgeBuildQueueAction.class.getName());
 
@@ -89,5 +92,13 @@ public final class PurgeBuildQueueAction implements RootAction {
     @Override
     public String getUrlName() {
         return "purge-build-queue";
+    }
+
+    @Extension
+    public static class TransientFactory extends TransientViewActionFactory {
+        @Override
+        public List<Action> createFor(View v) {
+            return List.of(new PurgeBuildQueueAction());
+        }
     }
 }
