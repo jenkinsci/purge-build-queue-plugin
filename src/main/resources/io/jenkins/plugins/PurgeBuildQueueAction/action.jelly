@@ -26,7 +26,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout">
   <l:hasAdministerOrManage>
     <l:task icon="symbol-trash-outline plugin-ionicons-api" confirmationMessage="${%Purge the build queue?}"
-            href="purge-build-queue/purge/" post="true" requiresConfirmation="true"
+            href="${h.getActionUrl(it.url,action)}/purge/" post="true" requiresConfirmation="true"
             destructive="true"
             title="${%Purge Build Queue}">
     </l:task>
